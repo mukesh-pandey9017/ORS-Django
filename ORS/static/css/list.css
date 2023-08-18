@@ -1,0 +1,36 @@
+.input-name
+{
+    width: 90%;
+    position: relative;
+    margin: 20px auto;
+    text-align: center;
+}
+.name
+{
+    width: 45%;
+    padding: 8px 0 8px 40px;
+} 
+.input-name span
+{
+    margin-left: 35px;
+} 
+
+.fix-1{
+    position: fixed;
+    bottom:165px;
+    width:100%;
+}
+
+.fix-2{
+    position: fixed;
+    bottom: 80px;
+    width:100%;
+}
+
+/* .vertical-center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+} */

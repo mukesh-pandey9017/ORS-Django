@@ -1,0 +1,80 @@
+{%extends "./base.html"%}
+{%load static%}
+
+{%block child_block%}
+<head>
+  <link rel="stylesheet" href="{% static 'css/list.css' %}">
+</head>
+
+<body class="container-fluid">
+    <br>
+    <h1 style="text-align: center;">Marksheet Merit List</h1>
+    
+    <form method="POST" action="/ORS/MarksheetMeritList/">
+        {%csrf_token%}
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered table-responsive-sm table-striped">
+                    <thead class="thead">
+                        <tr class="table-primary">
+                            <th scope="col" style="text-align: center;"><input type="checkbox"  id="select_all" onchange="selectAll(this)">Select</th>
+
+                            <th scope="row" style="text-align: center;">S_NO.</th>
+                            <th scope="row">ROLL NUMBER</th>
+                            <th scope="row">NAME</th>
+                            <th scope="row" style="text-align: center;">PHYSICS</th>
+                            <th scope="row" style="text-align: center;">CHEMISTRY</th>
+                            <th scope="row" style="text-align: center;">MATHS</th>
+                            <th scope="row" style="text-align: center;">TOTAL MARKS SCORED</th>
+                            <th scope="row" style="text-align: center;">PERCENTAGE</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for e in pageList %}
+                        <tr>
+                            <td style="text-align: center;"><input type="checkbox" name="ids" class="checkbox" onchange="selectone(this)" value="{{ e.id }}"></td>
+                            <td style="text-align: center;">{{ form.index|add:forloop.counter0 }}</td>
+                            <td>{{ e.rollNumber }}</td>
+                            <td>{{ e.name }}</td>
+                            <td style="text-align: center;">{{ e.physics }}</td>
+                            <td style="text-align: center;">{{ e.chemistry }}</td>
+                            <td style="text-align: center;">{{ e.maths }}</td>
+                            <td style="text-align: center;">{{ e.totalMarks }}</td>
+                            <td style="text-align: center;">{{ e.percentage }}</td>
+
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class='pagination justify-content-center fix-1'>
+            {% if pageList.has_previous %}
+                <input type="submit"  class="btn btn-primary" name="operation" value="Previous"/>
+            {%else%}
+                <input disabled type="submit"  class="btn btn-primary" name="operation" value="Previous"/>
+            {% endif %}
+
+            <span class='mx-4' >
+                <input disabled class="btn" value="Page {{ pageList.number }} of {{ pageList.paginator.num_pages }}">
+            </span>
+
+            {% if pageList.has_next %}
+                <input type="submit" class="btn btn-primary" name="operation" value="Next">
+            {%else%}
+                <input disabled type="submit"  class="btn btn-primary" name="operation" value="Next"/>
+            {% endif %}
+        </div>
+
+        <div align = 'center' class="fix-2">
+            <br><br>
+            <input name="curr_pg_no" type="hidden" value= "{{pageList.number}}">
+            <a class="btn btn-primary btn-lg" href="/ORS/Welcome/">Back</a><br>
+        </div>
+    </form>
+
+</body>
+
+{%endblock%}
