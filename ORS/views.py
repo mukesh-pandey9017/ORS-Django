@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.contrib.sessions.models import Session
+from django.views.decorators.csrf import csrf_exempt
 from .ctl.BaseCtl import BaseCtl
 from .ctl.LoginCtl import LoginCtl
 from .ctl.RegistrationCtl import RegistrationCtl
@@ -29,11 +31,7 @@ from .ctl.MarksheetMeritListCtl import MarksheetMeritListCtl
 
 # Create your views here.
 
-
-def index(request):
-    return render(request,"Home.html")
-
-
+@csrf_exempt
 def actionId(request, page='', operation="", id=0):
     path = request.META.get("PATH_INFO")
     if request.session.get("user") is not None and page != "":
@@ -55,3 +53,26 @@ def actionId(request, page='', operation="", id=0):
         res = ctlObj.execute(request, {"id": id, 'path': path})
 
     return res
+
+
+@csrf_exempt
+def auth(request, page="", operation="", id=0):
+    print("------auth(request, page="", operation="", id=0):-->>",request, page, operation, id)
+
+    if page == "Logout":
+        Session.objects.all().delete()
+        request.session['user'] = None
+        out = "Logout Successfull"
+        ctlName = "Login" + "Ctl()"
+        ctlObj = eval(ctlName)
+        res = ctlObj.execute(request, {"id": id, "operation": operation, 'out': out})
+
+    else:
+        ctlName = "Login" + "Ctl()"
+        ctlObj = eval(ctlName)
+        request.session['msg'] = "Session Expired,Please Login again"
+        res = ctlObj.execute(request, {"id": id,})
+    return res
+
+def index(request):
+    return render(request,"Home.html")

@@ -7,7 +7,7 @@ from service.service.UserService import UserService
 from service.service.RoleService import RoleService
 from service.service.EmailService import EmailService
 from service.service.EmailMessage import EmailMessage
-from django.contrib import messages
+
 
 
 class RegistrationCtl(BaseCtl):
@@ -160,8 +160,8 @@ class RegistrationCtl(BaseCtl):
                 self.get_service().save(r)
                 self.form['id'] = r.id
                 self.form['error'] = False
-                messages.success(request, 'Registered Successfully!!! Please login')
-                res = redirect('/ORS/Login/')
+                self.form['message'] =  'Registered Successfully!!! Please login'
+                res = render(request, self.get_template(), {"form": self.form, "roleList": self.preloadData})
             else:
                 self.form['error'] = True
                 self.form['message'] = "Please Check Your Internet Connection"

@@ -6,7 +6,7 @@ from service.models import TimeTable
 from service.service.CourseService import CourseService
 from service.service.SubjectService import SubjectService
 from service.service.TimeTableService import TimeTableService
-from django.contrib import messages
+
 
 class TimeTableCtl(BaseCtl):
 
@@ -94,22 +94,22 @@ class TimeTableCtl(BaseCtl):
             q = TimeTable.objects.exclude(id=params['id']).filter(subject_ID=self.form['subject_ID'], examTime=self.form['examTime'], examDate=self.form['examDate'])
             if (q.count()>0):
                 self.form['error'] = True
-                self.form['messege'] = "Exam Time, Exam Date, Subject name already exists"
+                self.form['message'] = "Exam Time, Exam Date, Subject name already exists"
                 return render(request, self.get_template(), {'form':self.form, 'courseList':self.course_List, 'subjectList':self.subject_List})
             else:
                 r = self.form_to_model(TimeTable())
                 self.get_service().save(r)
                 self.form['id'] = r.id
                 self.form['error'] = False
-                messages.success(request, 'Data has been updated successfully')
-                return redirect('/ORS/TimeTable/')
+                self.form['message'] = "Data has been updated successfully"
+                return render(request, self.get_template(), {'form':self.form, 'courseList':self.course_List, 'subjectList':self.subject_List})
         else:
             r = self.form_to_model(TimeTable())
             self.get_service().save(r)
             self.form['id'] = r.id   
             self.form['error'] = False
-            messages.success(request, 'Data has been saved successfully')
-            return redirect('/ORS/TimeTable/')
+            self.form['message'] = "Data has been saved successfully"
+            return render(request, self.get_template(), {'form':self.form, 'courseList':self.course_List, 'subjectList':self.subject_List})
     
 
     # Template html of TimeTable page

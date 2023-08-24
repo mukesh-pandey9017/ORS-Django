@@ -39,14 +39,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "debug_toolbar",
     "ORS",
-    "service"
+    "service",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -139,11 +137,4 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'mukesh.mechanical17@gmail.com'
 EMAIL_HOST_PASSWORD = 'tijhflixjbqnqqdk'
-
-INTERNAL_IPS = [
-    '127.0.0.1'
-]
-
-# import mimetypes
-# mimetypes.add_type("application/javascript", ".js", True)
 

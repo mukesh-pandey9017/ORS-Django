@@ -11,7 +11,7 @@
     <h1 style="text-align: center;">Marksheet Merit List</h1>
     
     <form method="POST" action="/ORS/MarksheetMeritList/">
-        {%csrf_token%}
+        
         <div class="row">
             <div class="col-md-12">
                 <table class="table table-bordered table-responsive-sm table-striped">
@@ -40,7 +40,7 @@
                             <td style="text-align: center;">{{ e.physics }}</td>
                             <td style="text-align: center;">{{ e.chemistry }}</td>
                             <td style="text-align: center;">{{ e.maths }}</td>
-                            <td style="text-align: center;">{{ e.totalMarks }}</td>
+                            <td style="text-align: center;">{{ e.total }}</td>
                             <td style="text-align: center;">{{ e.percentage }}</td>
 
                         </tr>
@@ -49,31 +49,8 @@
                 </table>
             </div>
         </div>
-
-        <div class='pagination justify-content-center fix-1'>
-            {% if pageList.has_previous %}
-                <input type="submit"  class="btn btn-primary" name="operation" value="Previous"/>
-            {%else%}
-                <input disabled type="submit"  class="btn btn-primary" name="operation" value="Previous"/>
-            {% endif %}
-
-            <span class='mx-4' >
-                <input disabled class="btn" value="Page {{ pageList.number }} of {{ pageList.paginator.num_pages }}">
-            </span>
-
-            {% if pageList.has_next %}
-                <input type="submit" class="btn btn-primary" name="operation" value="Next">
-            {%else%}
-                <input disabled type="submit"  class="btn btn-primary" name="operation" value="Next"/>
-            {% endif %}
-        </div>
-
-        <div align = 'center' class="fix-2">
-            <br><br>
-            <input name="curr_pg_no" type="hidden" value= "{{pageList.number}}">
-            <a class="btn btn-primary btn-lg" href="/ORS/Welcome/">Back</a><br>
-        </div>
-    </form>
+        <br>
+        <a class="btn btn-primary" style="margin-left:720px;" href="/ORS/Welcome/">Back</a>    </form>
 
 </body>
 

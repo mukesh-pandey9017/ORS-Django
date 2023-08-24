@@ -4,7 +4,7 @@ from django.shortcuts import render,redirect
 from ORS.utility.DataValidator import DataValidator
 from service.models import Student
 from service.service.StudentService import StudentService
-from django.contrib import messages
+
 
 class StudentCtl(BaseCtl):
     def preload(self, request):
@@ -118,8 +118,8 @@ class StudentCtl(BaseCtl):
                 self.get_service().save(r)
                 self.form['id'] = r.id
                 self.form['error'] = False
-                messages.success(request, 'Data has been updated successfully')
-                res = redirect('/ORS/Student/')
+                self.form['message'] = "Data has been updated successfully"
+                res = render(request, self.get_template(),{'form':self.form,'collegeList':self.preload_data})
         else:
             duplicate = self.get_service().get_model().objects.filter(email = self.form['email'])
             if duplicate.count()>0:
@@ -131,10 +131,9 @@ class StudentCtl(BaseCtl):
                 self.get_service().save(r)
                 self.form['id'] = r.id
                 self.form['error'] = False
-                messages.success(request, 'Data has been saved successfully')
-                res = redirect('/ORS/Student/')
+                self.form['message'] = "Data has been saved successfully"
+                res = render(request, self.get_template(),{'form':self.form,'collegeList':self.preload_data})
         return res
-
 
 
     # Template html of Student Page

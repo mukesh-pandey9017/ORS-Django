@@ -5,7 +5,6 @@ from service.models import User
 from service.service.ChangePasswordService import ChangePasswordService
 from service.service.EmailService import EmailService
 from service.service.EmailMessage import EmailMessage
-from django.contrib import messages
 
 class ChangePasswordCtl(BaseCtl):
 
@@ -73,10 +72,10 @@ class ChangePasswordCtl(BaseCtl):
                 self.form['id'] = user.id
                 r = self.form_to_model(user)
                 self.get_service().save(r)
-                # self.form['id'] = r.id
+                self.form['id'] = r.id
                 self.form['error'] = False
-                messages.success(request, 'Your password has been changed successfully, Please check your mail')
-                res = redirect('/ORS/ChangePassword/')
+                self.form['message'] = "Your password has been changed successfully, Please check your mail"
+                res = render(request, self.get_template(), {'form': self.form})
             else:
                 self.form['error'] = True
                 self.form['message'] = "Please Check Your Internate Connection"

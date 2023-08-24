@@ -5,7 +5,7 @@ from service.models import Course, Subject
 from service.forms import SubjectForm
 from service.service.SubjectService import SubjectService
 from service.service.CourseService import CourseService
-from django.contrib import messages
+
 
 class SubjectCtl(BaseCtl):
     def preload(self, request):
@@ -83,8 +83,8 @@ class SubjectCtl(BaseCtl):
                 self.form['id'] = r.id
 
                 self.form['error'] = False
-                messages.success(request, 'Data has been updated successfully')
-                res = redirect('/ORS/Subject/')
+                self.form['message'] = "Data has been updated successfully"
+                res = render(request,self.get_template(),{'form':self.form,'courseList':self.preload_data})
         else:
             duplicate = self.get_service().get_model().objects.filter(SubjectName = self.form['subjectName'])
             if duplicate.count()>0:
@@ -96,8 +96,8 @@ class SubjectCtl(BaseCtl):
                 self.get_service().save(r)
                 self.form['id'] = r.id
                 self.form['error'] = False
-                messages.success(request, 'Data has been saved successfully')
-                res = redirect('/ORS/Subject/')
+                self.form['message'] = "Data has been saved successfully"
+                res = render(request,self.get_template(),{'form':self.form,'courseList':self.preload_data})
                 
         return res
 

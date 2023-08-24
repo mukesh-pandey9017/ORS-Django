@@ -12,6 +12,10 @@
     <h1 style="color: rgb(6, 54, 248);">Login</h1>
 
     <div id="timeout">
+      {% if form.out %}
+        <h3 style="color:red;text-align:center;font-size:25px;font-family:serif;">{{ form.out }}</h3>
+      {% endif %}
+
       {% if messages %}
         <div class="messages" style="color:rgb(13, 237, 13);text-align:center;font-size:25px;font-family:serif;">
             {% for message in messages %}
@@ -34,7 +38,7 @@
     </div>
 
     <form method="POST" action="/ORS/Login/" novalidate>
-      {%csrf_token%}
+      
 
       <div class="txt_field">
         <input type="text" required value="{{ form.login_id }}" name="login_id">

@@ -6,7 +6,8 @@ from service.service.CollegeService import CollegeService
 from service.service.CourseService import CourseService
 from service.service.SubjectService import SubjectService
 from service.service.FacultyService import FacultyService
-from django.contrib import messages
+# from service.service.FacultyService import FacultyService
+
 
 class FacultyCtl(BaseCtl):
 
@@ -163,8 +164,10 @@ class FacultyCtl(BaseCtl):
                 self.form['id'] = r.id
 
                 self.form['error'] = False
-                messages.success(request, 'Data has been updated successfully')
-                res = redirect('/ORS/Faculty/')
+                self.form['message'] = 'Data has been updated successfully'
+                res = render(request, self.get_template(), {
+                    'form':self.form, 'courseList':self.course_List, 'collegeList':self.college_List, 'subjectList':self.subject_List
+                })
 
         else:
             duplicate = self.get_service().get_model().objects.filter(email=self.form['email'])
@@ -178,8 +181,10 @@ class FacultyCtl(BaseCtl):
                 self.get_service().save(r)
 
                 self.form['error'] = False
-                messages.success(request, 'Data has been saved successfully')
-                res = redirect('/ORS/Faculty/')
+                self.form['message'] = 'Data has been saved successfully'
+                res = render(request, self.get_template(), {
+                    'form':self.form, 'courseList':self.course_List, 'collegeList':self.college_List, 'subjectList':self.subject_List
+                })
         return res
 
     # Template html of AddFaculty page

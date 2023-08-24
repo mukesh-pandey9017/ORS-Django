@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .BaseCtl import BaseCtl
 from ORS.utility.DataValidator import DataValidator
-from service.service.ForgetPasswordService import ForgetPasswordService
+from service.service.ForgotPasswordService import ForgotPasswordService
 from service.service.EmailService import EmailService
 from service.service.EmailMessage import EmailMessage
 from service.models import User
@@ -56,4 +56,4 @@ class ForgetPasswordCtl(BaseCtl):
         return "ForgetPassword.html"
 
     def get_service(self):
-        return ForgetPasswordService()
+        return ForgotPasswordService()

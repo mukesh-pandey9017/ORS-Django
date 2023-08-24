@@ -11,20 +11,15 @@
         <h2>Faculty Information</h2>
         <div class="form-container">
             <form method="POST">
-                {%csrf_token%}
+                
                 <div id="timeout">
                     {% if form.error %}
                         <p style="color:red;text-align:center;font-size:26px;font-family:serif;"> {{ form.message }} </p>
                     {% else %}
-                        {% if messages %}
-                            <div class="messages" style="color:rgb(13, 237, 13);text-align:center;font-size:26px;font-family:serif;">
-                                {% for message in messages %}
-                                    <p>{{ message }}</p>
-                                {% endfor %}
-                            </div>
-                        {% endif %}
+                        <p style="color:rgb(13, 237, 13);text-align:center;font-size:26px;font-family:serif;"> {{ form.message }} </p>
                     {% endif %}
                 </div>
+                
             <input type="hidden" name="id" value="{{ form.id }}">
             <div class="input-name">
                 <i class="fa fa-user icon"></i>
@@ -109,7 +104,7 @@
             <div class="input-name">
                 <label for="subject_ID">Subject Name<span style="color: red;margin-left:2px">*</span></label>
                 <select class="role" name="subject_ID">
-                    <option value="{{form.Subject_ID}}">{{ form.SubjectName }}</option>
+                    <option value="{{form.subject_ID}}">{{ form.subjectName }}</option>
                     {% for form in subjectList %}
                     <option value="{{ form.id }}">{{ form.SubjectName }}</option>
                     {% endfor %}

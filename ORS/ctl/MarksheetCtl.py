@@ -3,7 +3,7 @@ from django.shortcuts import render,redirect
 from ORS.utility.DataValidator import DataValidator
 from service.models import Marksheet
 from service.service.MarksheetService import MarksheetService
-from django.contrib import messages
+
 
 
 class MarksheetCtl(BaseCtl):
@@ -104,8 +104,8 @@ class MarksheetCtl(BaseCtl):
                 self.get_service().save(r)
                 self.form['id'] = r.id
                 self.form['error'] = False
-                messages.success(request, 'Data has been updated successfully')
-                res = redirect('/ORS/Marksheet/')
+                self.form['message'] = 'Data has been updated successfully'
+                res = render(request, self.get_template(),{'form':self.form})
                 return res
         else:
             duplicate = self.get_service().get_model().objects.filter(rollNumber = self.form['rollNumber'])
@@ -118,8 +118,8 @@ class MarksheetCtl(BaseCtl):
                 r = self.form_to_model(Marksheet())
                 self.get_service().save(r)
                 self.form['error'] = False
-                messages.success(request, 'Data has been saved successfully')
-                res = redirect('/ORS/Marksheet/')
+                self.form['message'] = 'Data has been saved successfully'
+                res = render(request, self.get_template(),{'form':self.form})
                 return res
 
     # Template html of Marksheet page

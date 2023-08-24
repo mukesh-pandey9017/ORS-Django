@@ -5,7 +5,6 @@ from .BaseCtl import BaseCtl
 class WelcomeCtl(BaseCtl):
 
     def display(self, request, params={}):
-        print("-------Welcome display--params",params)
         user = request.session.get('user', None)
         # request.session['name'] = user.role_Name
         if(user is not None):
@@ -13,7 +12,7 @@ class WelcomeCtl(BaseCtl):
         return render(request, self.get_template(), {'form': self.form})
     
     def submit(self, request, params={}):
-        return render(request, self.get_template(), {'form': self.form})
+        pass
 
     # Template html of Role Page
     def get_template(self):

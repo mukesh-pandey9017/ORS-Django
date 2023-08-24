@@ -19,7 +19,6 @@ class BaseCtl(ABC):
         self.form["error"] = False
         self.form["inputError"] = {}
         self.form["pageNo"] = 1
-        self.pg_size = 5
 
     '''
     It loads preload data of the page 
@@ -37,7 +36,6 @@ class BaseCtl(ABC):
         self.preload(request)
         if request.method == "GET":
             return self.display(request, params)
-
         elif request.method == "POST":
             self.request_to_form(request.POST)
             if self.input_validation():
@@ -45,10 +43,11 @@ class BaseCtl(ABC):
             else:
                 if (request.POST.get("operation") == "Delete"):
                     return self.deleteRecord(request, params)
-                elif (request.POST.get("operation") == "Next"):
+                elif (request.POST.get("operation") == "next"):
                     return self.next(request, params)
-                elif (request.POST.get("operation") == "Previous"):
+                elif (request.POST.get("operation") == "previous"):
                     return self.previous(request, params)
+
                 else:
                     return self.submit(request, params)
 
@@ -56,13 +55,11 @@ class BaseCtl(ABC):
             message = "Request is not supported"
             return HttpResponse(message)
 
-
-    # def deleteRecord(self, request, params={}):
-    #     pass
+    def deleteRecord(self, request, params={}):
+        pass
     '''
     delete record of received ID    
     '''
-
     @abstractmethod
     def display(self, request, params={}):
         pass
@@ -79,7 +76,7 @@ class BaseCtl(ABC):
     Populate values from Request POST/GET to Controller form object
     '''
 
-    def request_to_form(self, requestform):
+    def request_to_form(self, requestForm):
         pass
 
         # Populate Form from Model

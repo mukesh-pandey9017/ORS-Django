@@ -5,6 +5,6 @@ urlpatterns = [
     path("",views.index),
     path('<page>/',views.actionId),
     path("<page>/<operation>/<int:id>/", views.actionId),
-    # path("auth/<page>/", views.auth)
+    path("auth/<page>/", views.auth)
 
 ]

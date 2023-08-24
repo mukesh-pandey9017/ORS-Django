@@ -23,7 +23,7 @@ from ORS import views
 
 urlpatterns = [
         path("admin/", admin.site.urls),
-        path("", views.index),
+        path("",include("ORS.urls")),
         path("ORS/", include('ORS.urls')),
         path("__debug__/", include(debug_toolbar.urls)),
 

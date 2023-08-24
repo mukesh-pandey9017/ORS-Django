@@ -6,9 +6,7 @@ class EmailMessage:
         self.frm = EMAIL_HOST_USER
         self.to = []
         self.cc = []
-        self.bcc = []
+        self.bcc =[]
         self.subject = ""
-        self.text = ""
-        self.type = "html"
+        self.text = "html"
         self.attachment = []
-        

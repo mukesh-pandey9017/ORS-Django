@@ -12,12 +12,12 @@
         <h2>User Registration</h2>
         <div class="form-container">
             <form method="POST">
-                {%csrf_token%}
+                
                 <div id="timeout">
                     {% if form.error %}
                         <p style="color:red;text-align:center;font-size:25px;font-family:serif;"> {{ form.message }} </p>
                     {% else %}
-                        <p style="color:rgb(38, 240, 38);text-align: center;font-family:serif;"> {{ form.message }} </p>
+                        <p style="color:rgb(38, 240, 38);text-align: center;font-size:25px;font-family:serif;"> {{ form.message }} </p>
                     {% endif %}
                 </div>
             <input type="hidden" name="id" value="{{ form.id }}">

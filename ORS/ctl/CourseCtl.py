@@ -3,7 +3,7 @@ from django.shortcuts import render,redirect
 from ORS.utility.DataValidator import DataValidator
 from service.models import College, Course
 from service.service.CourseService import CourseService
-from django.contrib import messages
+
 
 class CourseCtl(BaseCtl):
 
@@ -13,8 +13,6 @@ class CourseCtl(BaseCtl):
         self.form['courseDescription'] = requestForm['courseDescription']
         self.form['courseDuration'] = requestForm['courseDuration']
 
-    def next(self):
-        pass
 
     def form_to_model(self, obj):
         pk = int(self.form['id'])
@@ -73,8 +71,8 @@ class CourseCtl(BaseCtl):
                 self.get_service().save(r)
                 self.form['id'] = r.id
                 self.form['error'] = False
-                messages.success(request, 'Data has been updated successfully')
-                res = redirect('/ORS/Course/')
+                self.form['message']= 'Data has been updated successfully'
+                res = render(request, self.get_template(), {'form':self.form})
 
             return res
         else:
@@ -88,8 +86,8 @@ class CourseCtl(BaseCtl):
                 self.get_service().save(r)
                 self.form['id'] = r.id
                 self.form['error'] = False
-                messages.success(request, 'Data has been updated successfully')
-                res = redirect('/ORS/Course/')
+                self.form['message'] ='Data has been saved successfully'
+                res = render(request, self.get_template(), {'form':self.form})
 
             return res
     

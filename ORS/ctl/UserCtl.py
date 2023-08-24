@@ -4,7 +4,7 @@ from .BaseCtl import BaseCtl
 from service.models import User
 from service.service.UserService import UserService
 from service.service.RoleService import RoleService
-from django.contrib import messages
+
 
 class UserCtl(BaseCtl):
     def preload(self, request):
@@ -150,13 +150,13 @@ class UserCtl(BaseCtl):
                 res = render(request, self.get_template(), {'form': self.form, 'roleList': self.preloadData})
             else:
                 r = self.form_to_model(User())
-                print("------r-->>",r)
                 self.get_service().save(r)
                 self.form['id'] = r.id
 
                 self.form['error'] = False
-                messages.success(request, 'Data has been updated successfully')
-                res = redirect('/ORS/User/')
+                self.form['message'] = "Data has been updated successfully"
+                res = render(request, self.get_template(), {'form': self.form, 'roleList': self.preloadData})
+                
         else:
             duplicate = self.get_service().get_model().objects.filter(login_id = self.form['login_id'])
             if duplicate.count()>0:
@@ -169,9 +169,8 @@ class UserCtl(BaseCtl):
                 self.form['id'] = r.id
 
                 self.form['error'] = False
-                messages.success(request, 'Data has been saved successfully')
-                res = redirect('/ORS/User/')
- 
+                self.form['message'] = "Data has been saved successfully"
+                res = render(request, self.get_template(), {'form': self.form, 'roleList': self.preloadData})
         return res
 
     def get_template(self):

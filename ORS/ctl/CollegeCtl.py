@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from ORS.utility.DataValidator import DataValidator
 from service.models import College
 from service.service.CollegeService import CollegeService
-from django.contrib import messages
+
 
 
 class CollegeCtl(BaseCtl):
@@ -100,8 +100,8 @@ class CollegeCtl(BaseCtl):
                 self.get_service().save(r)
                 self.form['id'] = r.id
                 self.form['error'] = False
-                messages.success(request, 'Data has been updated successfully')
-                res = redirect('/ORS/College/')
+                self.form['message'] = "Data has been updated successfully"
+                res = render(request, self.get_template(), {'form':self.form})
 
             return res
         else:
@@ -115,8 +115,8 @@ class CollegeCtl(BaseCtl):
                 self.get_service().save(r)
                 self.form['id'] = r.id
                 self.form['message'] = False
-                messages.success(request, 'Data has been saved successfully')
-                res = redirect('/ORS/College/')
+                self.form['message'] = "Data has been saved successfully"
+                res = render(request, self.get_template(), {'form':self.form})
 
             return res
 

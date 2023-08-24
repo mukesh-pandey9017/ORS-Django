@@ -3,7 +3,7 @@ from django.shortcuts import render,redirect
 from ORS.utility.DataValidator import DataValidator
 from service.models import Role
 from service.service.RoleService import RoleService
-from django.contrib import messages
+
 
 class RoleCtl(BaseCtl):
 
@@ -58,8 +58,9 @@ class RoleCtl(BaseCtl):
                 self.get_service().save(r)
                 self.form['id'] = r.id
                 self.form['error'] = False
-                messages.success(request, 'Data has been updated successfully')
-                res = redirect('/ORS/Role/')
+                self.form['message']= 'Data has been updated successfully'
+                res = render(request, self.get_template(), {'form':self.form})
+
 
             return res
         else:
@@ -73,8 +74,9 @@ class RoleCtl(BaseCtl):
                 self.get_service().save(r)
                 self.form['id'] = r.id
                 self.form['error'] = False
-                messages.success(request, 'Data has been saved successfully')
-                res = redirect('/ORS/Role/')
+                self.form['message']= 'Data has been saved successfully'
+                res = render(request, self.get_template(), {'form':self.form})
+
 
             return res
 
