@@ -81,7 +81,7 @@ SESSION_SERIALIZER = "django.contrib.sessions.serializers.PickleSerializer"
 DATABASES = {
     "default": {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ORS_db',
+        'NAME': 'sos_db',
         'PASSWORD': 'root',
         'USER': 'root',
     }

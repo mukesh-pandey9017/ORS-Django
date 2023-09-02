@@ -45,6 +45,7 @@ class UserService(BaseService):
         for x in result:
             params['MaxId'] = x[0]
             res["data"].append({columnName[i]: x[i] for i, _ in enumerate(x)})
+        print(params)
         return res
 
     def get_model(self):

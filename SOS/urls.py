@@ -16,7 +16,6 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf import settings
-import debug_toolbar
 from django.urls import path,include
 from ORS import views
 
@@ -25,6 +24,5 @@ urlpatterns = [
         path("admin/", admin.site.urls),
         path("",include("ORS.urls")),
         path("ORS/", include('ORS.urls')),
-        path("__debug__/", include(debug_toolbar.urls)),
 
 ]

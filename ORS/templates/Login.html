@@ -16,13 +16,6 @@
         <h3 style="color:red;text-align:center;font-size:25px;font-family:serif;">{{ form.out }}</h3>
       {% endif %}
 
-      {% if messages %}
-        <div class="messages" style="color:rgb(13, 237, 13);text-align:center;font-size:25px;font-family:serif;">
-            {% for message in messages %}
-                <p>{{ message }}</p>
-            {% endfor %}
-        </div>
-      {% endif %}
 
       {% if request.session.msg != None %}
         <h3
