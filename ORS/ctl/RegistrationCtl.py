@@ -4,17 +4,12 @@ from .BaseCtl import BaseCtl
 from ORS.utility.DataValidator import DataValidator
 from service.models import User
 from service.service.UserService import UserService
-from service.service.RoleService import RoleService
 from service.service.EmailService import EmailService
 from service.service.EmailMessage import EmailMessage
 
 
 
 class RegistrationCtl(BaseCtl):
-    def preload(self, request):
-        self.page_list = RoleService().preload()
-        self.preloadData = self.page_list
-
     # Populate Form from Http Request
     def request_to_form(self, requestForm):
         self.form['id'] = requestForm['id']
@@ -133,10 +128,7 @@ class RegistrationCtl(BaseCtl):
 
     # Display Role Page
     def display(self, request, params={}):
-        if params['id'] > 0:
-            r = self.get_service().get(params['id'])
-            self.model_to_form(r)
-        res = render(request, self.get_template(), {"form": self.form, "roleList": self.preloadData})
+        res = render(request, self.get_template(), {"form": self.form})
         return res
 
     # Submit Role Page
@@ -161,7 +153,7 @@ class RegistrationCtl(BaseCtl):
                 self.form['id'] = r.id
                 self.form['error'] = False
                 self.form['message'] =  'Registered Successfully!!! Please login'
-                res = render(request, self.get_template(), {"form": self.form, "roleList": self.preloadData})
+                res = render(request, self.get_template(), {"form": self.form})
             else:
                 self.form['error'] = True
                 self.form['message'] = "Please Check Your Internet Connection"

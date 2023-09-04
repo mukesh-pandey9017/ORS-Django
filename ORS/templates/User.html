@@ -10,7 +10,7 @@
     <div class="container">
         <h2>User Registration</h2>
         <div class="form-container">
-            <form method="POST" >
+            <form method="POST" novalidate>
                 
                 <div id="timeout">
                     {% if form.error %}
@@ -76,11 +76,17 @@
 
                 <span>
                     <i class="fa fa-calendar icon"  ></i>
-                <input type="date" placeholder="dd-mm-yyyy" name="dob" value="{{form.dob}}" class="name">
+                    <input type="date" placeholder="dd-mm-yyyy" name="dob" value="{{form.dob}}" class="name">
                 </span>
             </div>
-            <div class="input-error" >
-                <span style="color: red;margin-left:27px";>{{ form.inputError.dob }}</span>
+            <div class="row">
+                <div class="col-lg-6">
+                    <span style="color: red;margin-left:27px;">{{ form.inputError.gender }}</span>
+                </div>
+
+                <div class="col-lg-6">
+                    <span style="color: red";>{{ form.inputError.dob }}</span>
+                </div>
             </div>
 
             <div class="input-name">

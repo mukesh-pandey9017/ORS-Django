@@ -57,7 +57,6 @@ def actionId(request, page='', operation="", id=0):
 
 @csrf_exempt
 def auth(request, page="", operation="", id=0):
-    print("------auth(request, page="", operation="", id=0):-->>",request, page, operation, id)
 
     if page == "Logout":
         Session.objects.all().delete()

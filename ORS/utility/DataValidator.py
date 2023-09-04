@@ -5,21 +5,21 @@ from types import ClassMethodDescriptorType
 class DataValidator:
 
     @classmethod
-    def isNotNull(self, val):
+    def isNotNull(cls, val):
         if(val == None or val == ""):
             return False
         else:
             return True
 
     @classmethod
-    def isNull(self, val):
+    def isNull(cls, val):
         if(val == None or val == ""):
             return True
         else:
             return False
 
     @classmethod
-    def isDate(self, val):
+    def isDate(cls, val):
         if re.match("([0-2]\d{3})-(0\d|1[0-2])-([0-2]\d|3[01])", val):
             if(datetime.strptime(val,"%Y-%m-%d") <= datetime.strptime(str(date.today()),"%Y-%m-%d")):# Comparing date with current date
                 return False
@@ -29,7 +29,7 @@ class DataValidator:
             return True
 
     @classmethod
-    def ischeck(self, val):
+    def ischeck(cls, val):
         if(val == None or val == ""):
             return True
         else:
@@ -39,7 +39,7 @@ class DataValidator:
                 return True
 
     @classmethod
-    def ischeckroll(self, val):
+    def ischeckroll(cls, val):
         if re.match("^(?=.*[0-9]$)(?=.*[A-Z])", val):
             return False
         else:
@@ -47,14 +47,14 @@ class DataValidator:
 
 
     @classmethod
-    def isalphacheck(self, val):
+    def isalphacheck(cls, val):
         if re.match("^[a-zA-z\s]+$", val):
             return False
         else:
             return True
 
     @classmethod
-    def ismobilecheck(self, val):
+    def ismobilecheck(cls, val):
         if re.match("^[6-9]\d{9}$", val):
             return False
         else:
@@ -62,7 +62,7 @@ class DataValidator:
 
 
     @classmethod
-    def isemail(self, val):
+    def isemail(cls, val):
         if re.match("[^@]+@[^@]+\.[^@]+", val):
             return False
         else:
@@ -70,7 +70,7 @@ class DataValidator:
 
 
     @classmethod
-    def isphonecheck(self, val):
+    def isphonecheck(cls, val):
         if re.match("^(?:(?:\+|0{0,2})91(\s*[\ -]\s*)?|[0]?)?[789]\d{9}|(\d[ -]?){10}\d$", val):
             return False
         else:
