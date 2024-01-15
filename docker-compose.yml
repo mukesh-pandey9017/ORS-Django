@@ -10,7 +10,9 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
   web:
+    image: image-ORS-django
     build: .
+    container_name : container-ORS-django
     ports:
       - "8000:8000"
     depends_on:
