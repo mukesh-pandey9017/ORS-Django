@@ -21,7 +21,7 @@ class MarksheetMeritListCtl(BaseCtl):
     
     #Display Marksheet page 
     def display(self,request,params={}):
-        record = self.get_service().search(self.form)
+        record = self.get_service().search()
         self.page_list = record['data']
         res = render(request,self.get_template(),{'form':self.form,'pageList':self.page_list})
         return res
@@ -29,7 +29,7 @@ class MarksheetMeritListCtl(BaseCtl):
 
     #Submit Marksheet page
     def submit(self,request,params={}):
-        record = self.get_service().search(self.form)
+        record = self.get_service().search()
         self.page_list = record['data']
         if self.page_list==[]:
             self.form['msg'] = 'No record found'

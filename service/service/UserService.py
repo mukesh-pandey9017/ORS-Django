@@ -31,9 +31,9 @@ class UserService(BaseService):
         val1 = params.get("login_id", None)
         val2 = params.get("firstName", None)
         if DataValidator.isNotNull(val1):
-            sql += " and login_id = '" + val1 + "' "
+            sql += " and login_id like '" + val1 + "%%' "
         if DataValidator.isNotNull(val2):
-            sql += " and firstName = '" + val2 + "' "
+            sql += " and firstName like '" + val2 + "%%' "
         sql += " limit %s,%s"
         cursor = connection.cursor()
         params['index'] = ((params['pageNo'] - 1) * self.pageSize) + 1

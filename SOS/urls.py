@@ -24,5 +24,5 @@ urlpatterns = [
         path("admin/", admin.site.urls),
         path("",include("ORS.urls")),
         path("ORS/", include('ORS.urls')),
-
+        # path("ORSAPI/", include('ORSAPI.urls')),
 ]

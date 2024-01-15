@@ -23,21 +23,21 @@
             <input type="hidden" name="id" value="{{ form.id }}">
             <div class="input-name">
                 <i class="fas fa-book-open icon"></i>
-                <input type="text" placeholder="Course Name" name="courseName" value="{{form.courseName}}" class="text-name">
+                <input [(ngModel)]="form.courseName" type="text" placeholder="Course Name" name="courseName" class="text-name">
             </div>
             <div class="input-name">
                 <span style="color: red;margin-left:5px">{{form.inputError.courseName}}</span>
             </div>
             <div class="input-name">
                 <i class="fa fa-paragraph icon"></i>
-                <input type="text" placeholder="Course Description" name="courseDescription" value="{{form.courseDescription}}" class="text-name">
+                <input [(ngModel)]="form.courseDescription" type="text" placeholder="Course Description" name="courseDescription" class="text-name">
             </div>
             <div class="input-name">
                 <span style="color: red;margin-left:5px">{{form.inputError.courseDescription}}</span>
             </div>
             <div class="input-name">
                 <i class="fas fa-clock icon"></i>
-                <input type="text" placeholder="Course Duration" name="courseDuration" value="{{form.courseDuration}}" class="text-name">
+                <input [(ngModel)]="form.courseDuration" type="text" placeholder="Course Duration" name="courseDuration" class="text-name">
             </div>
             <div class="input-name">
                 <span style="color: red;margin-left:5px">{{form.inputError.courseDuration}}</span>
