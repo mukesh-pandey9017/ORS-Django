@@ -15,7 +15,7 @@ class StudentService(BaseService):
 
     def search(self, params):
         pageNo = (params['pageNo'] - 1) * self.pageSize
-        sql = "select * from ors_student where 1=1"
+        sql = "select * from ORS_STUDENT where 1=1"
         val = params.get('firstName', None)
         if (DataValidator.isNotNull(val)):
             sql += " and firstName = '" + val + "' "

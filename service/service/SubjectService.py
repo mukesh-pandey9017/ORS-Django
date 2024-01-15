@@ -13,7 +13,7 @@ class SubjectService(BaseService):
     def search(self,params):
         print("Page No------->",params['pageNo'])
         pageNo = (params['pageNo']-1) * self.pageSize
-        sql = "select * from ors_subject where 1=1"
+        sql = "select * from ORS_SUBJECT where 1=1"
         val  = params.get("subjectName", None)
         if (DataValidator.isNotNull(val)):
             sql += " and subjectName = '"+val+"' "

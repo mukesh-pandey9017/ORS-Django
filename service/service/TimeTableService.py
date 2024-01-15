@@ -18,7 +18,7 @@ class TimeTableService(BaseService):
     def search(self, params):
         print("Page No------------>", params['pageNo'])
         pageNo = (params['pageNo'] - 1) * self.pageSize
-        sql = "select * from ors_timetable where 1=1"
+        sql = "select * from ORS_TIMETABLE where 1=1"
         val = params.get("semester", None)
         if (DataValidator.isNotNull(val)):
             sql += " and semester = '" + val + "' "

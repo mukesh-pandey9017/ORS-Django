@@ -11,7 +11,7 @@ class MarksheetService(BaseService):
     def search(self ,params):
         print("Page No -->" ,params["pageNo"])
         pageNo = (params["pageNo" ] -1 ) *self.pageSize
-        sql ="select * from ors_marksheet where 1=1"
+        sql ="select * from ORS_MARKSHEET where 1=1"
         val = params.get("rollNumber", None)
         if DataValidator.isNotNull(val):
             sql +=" and rollNumber = '"+val+"' "

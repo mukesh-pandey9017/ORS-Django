@@ -9,7 +9,7 @@ class RoleService(BaseService):
     def search(self,params):
         print('Page No -->',params['pageNo'])
         pageNo = (params['pageNo']-1)*self.pageSize
-        sql = 'select * from ors_role where 1=1'
+        sql = 'select * from ORS_ROLE where 1=1'
         val = params.get('name',None)
         if (DataValidator.isNotNull(val)):
             sql += " and name ='"+val+"' "

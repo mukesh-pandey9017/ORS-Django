@@ -87,14 +87,25 @@ SESSION_SERIALIZER = "django.contrib.sessions.serializers.PickleSerializer"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     "default": {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'sos_db',
+#         'PASSWORD': 'root',
+#         'USER': 'root',
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#     }
+# }
+
 DATABASES = {
-    "default": {
+    'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'sos_db',
-        'PASSWORD': 'root',
-        'USER': 'root',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'HOST': os.environ.get('DJANGO_DB_HOST', 'localhost'),
+        'PORT': os.environ.get('DJANGO_DB_PORT', '3306'),
+        'NAME': os.environ.get('DJANGO_DB_NAME', 'sos_db'),
+        'USER': os.environ.get('DJANGO_DB_USER', 'root'),
+        'PASSWORD': os.environ.get('DJANGO_DB_PASSWORD', 'root'),
     }
 }
 
